@@ -20,8 +20,8 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "@cornerstonejs/core": "^0.103.0",
-    "@cornerstonejs/tools": "^0.103.0",
+    "@cornerstonejs/core": "^1.2.6",
+    "@cornerstonejs/tools": "^1.2.6",
     "cornerstone-web-image-loader": "^2.1.1"
   }
 }
