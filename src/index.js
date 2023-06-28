@@ -9,6 +9,7 @@ import {
   addTool,
   Enums as csToolsEnums,
   init as csToolsInit,
+  utilities,
   PanTool,
   StackScrollMouseWheelTool,
   ToolGroupManager,
@@ -66,6 +67,7 @@ function component() {
       const viewport = renderingEngine.getViewport(viewportId);
       viewport.setStack(imageIds, 1);
       viewport.render();
+      utilities.stackPrefetch.enable(element);
     });
 
   return element;
