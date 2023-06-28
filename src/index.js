@@ -2,6 +2,7 @@ import * as cornerstone from "@cornerstonejs/core";
 import {
   Enums,
   init as csRenderInit,
+  imageLoader,
   metaData,
   RenderingEngine,
 } from "@cornerstonejs/core";
@@ -16,7 +17,7 @@ import {
   WindowLevelTool,
   ZoomTool,
 } from "@cornerstonejs/tools";
-import * as cornerstoneWebImageLoader from "cornerstone-web-image-loader";
+import registerWebImageLoader from "./web-image-loader";
 
 const init = async () => {
   await csRenderInit();
@@ -26,15 +27,15 @@ const init = async () => {
 function metaDataProvider(type, imageId) {
   return {
     imagePixelModule: {
-      photometricInterpretation: "MONOCHROME1",
+      photometricInterpretation: "RGB",
     },
     generalSeriesModule: {},
   }[type];
 }
 
 function component() {
-  metaData.addProvider(metaDataProvider, 100);
-  cornerstoneWebImageLoader.external.cornerstone = cornerstone;
+  registerWebImageLoader(imageLoader);
+  metaData.addProvider(metaDataProvider, 1000);
 
   // cornerstone.setUseCPURendering(true);
 
