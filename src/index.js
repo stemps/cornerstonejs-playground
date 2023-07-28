@@ -8,6 +8,7 @@ import {
 } from "@cornerstonejs/core";
 import {
   addTool,
+  drawing,
   Enums as csToolsEnums,
   init as csToolsInit,
   utilities,
@@ -17,6 +18,7 @@ import {
   WindowLevelTool,
   ZoomTool,
 } from "@cornerstonejs/tools";
+import getSvgDrawingHelper from "@cornerstonejs/tools/dist/esm/drawingSvg/getSvgDrawingHelper";
 import registerWebImageLoader from "./web-image-loader";
 
 const init = async () => {
@@ -67,8 +69,20 @@ function component() {
 
       const viewport = renderingEngine.getViewport(viewportId);
       viewport.setStack(imageIds, 1);
-      viewport.render();
       utilities.stackPrefetch.enable(element);
+      viewport.render();
+
+      const drawingHelper = getSvgDrawingHelper(element);
+      drawing.drawRect(
+        drawingHelper,
+        "test-annotation",
+        "0",
+        [50,50],
+        [150,150],
+        {
+          color: "red"
+        }
+      );
     });
 
   return element;
